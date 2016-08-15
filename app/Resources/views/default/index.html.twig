@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block javascripts %}
+	{{ parent() }}
+
+	<script src="{{ asset('js/index.js') }}"></script>
+	<script src="https://use.fontawesome.com/d409eefb1e.js"></script>
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+
+	<link href="{{ asset('css/index.css') }}" type="text/css" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <div id="wrapper">
+    	<div id="todo-container">
+    		<div id="todo-header">
+    			<div class="todo-content">
+    				<h1>- SymFoDo -</h1>
+	    			<input type="text" id="addTask" placeholder="Let's add a new task..." />
+	    		</div>
+	    	</div>
+	    	<div id="todo-menu">
+	    		<div class="todo-content">
+	    			<ul id="todo-menu-list">
+	    				<li class="active" onclick="filterTodo(this);" data-filter="all">All</li>
+	    				<li onclick="filterTodo(this);" data-filter="active">Active</li>
+	    				<li onclick="filterTodo(this);" data-filter="completed">Completed</li>
+	    			</ul>
+	    			<ul id="todo-action-list">
+	    				<li><span class="fa-icon fa-check" onclick="toggleAllCompletion();" title="Toggle completion of all tasks"></span></li>
+	    				<li><span class="fa-icon fa-trash-o" onclick="deleteCompleted();" title="Delete completed tasks"></span></li>
+	    			</ul>
+	    		</div>
+	    	</div>
+	    	<div id="todo-tasks">
+	    		<div class="todo-content" id="todo-tasks-list">
+					{% include 'default/tasklist.html.twig' %}
+				</div>
+			</div>
+		</div>
+    </div>
+{% endblock %}
